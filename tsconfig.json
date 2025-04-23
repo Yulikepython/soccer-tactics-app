@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* 基本設定 */
+    "target": "es2020",
+    "module": "es2020",
+    "lib": ["es2020", "dom", "dom.iterable"],
+    
+    /* モジュール解決オプション */
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "resolveJsonModule": true,
+    
+    /* 出力設定 */
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    
+    /* 型チェック設定 */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    
+    /* その他の設定 */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

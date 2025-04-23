@@ -1,0 +1,38 @@
+{
+  "name": "soccer-tactics-app",
+  "version": "1.0.0",
+  "description": "サッカー作戦盤アプリケーション - TypeScript版",
+  "scripts": {
+    "test": "cd dev && npm test",
+    "build": "tsc && cp -r docs/css docs/docs docs/*.html favicon.ico dist/",
+    "dev": "tsc --watch",
+    "lint": "eslint src/**/*.ts",
+    "start": "npx http-server dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yulikepython/soccer-tactics-app.git"
+  },
+  "keywords": [
+    "soccer",
+    "tactics",
+    "strategy",
+    "board",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yulikepython/soccer-tactics-app/issues"
+  },
+  "homepage": "https://yulikepython.github.io/soccer-tactics-app",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.51.0",
+    "http-server": "^14.1.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}
