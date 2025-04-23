@@ -14,7 +14,8 @@
 
 ## プロジェクト構成
 
-- `docs/` - GitHub Pages で公開されるウェブサイトファイル
+- `dist/` - GitHub Pages で公開されるウェブサイトファイル
+- `docs/` - ドキュメント・マークダウンソース
 - `src/` - アプリケーションのソースコード
   - `components/` - UI コンポーネント
   - `utils/` - ユーティリティ関数
@@ -30,8 +31,8 @@ npm test
 
 ## デプロイ
 
-このリポジトリは自動的に GitHub Pages にデプロイされます。
-`main` ブランチにプッシュすると、`docs` フォルダの内容が GitHub Pages として公開されます。
+このリポジトリは GitHub Actions によって自動的に GitHub Pages にデプロイされます。
+`main` ブランチにプッシュすると、`dist` フォルダの内容が GitHub Pages として公開されます。
 
 ## 使用ライブラリ
 

@@ -1,0 +1,339 @@
+/* styles.css - v.hn.202410272240
+ * サッカー作戦盤のスタイル定義
+ * - レスポンシブデザイン対応
+ * - モバイルファースト設計
+ * - タッチ操作最適化
+ */
+
+/* ===========================
+ * 1. 基本レイアウト
+ * =========================== */
+ #app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===========================
+ * 2. コントロールパネル
+ * =========================== */
+#controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+#controls button {
+    flex: 1 1 calc(33.333% - 10px); /* モバイルではデフォルトで3列表示 */
+    min-width: calc(33.333% - 10px);
+    padding: 12px 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+}
+
+#controls button:hover {
+    background-color: #45a049;
+}
+
+#controls button.active {
+    background-color: #357a38;
+}
+
+/* ===========================
+ * 3. フィールドコンテナ
+ * =========================== */
+#screenshot-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+#field-container {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 600/1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    overflow: visible !important; /* オーバーフロー制限を解除 */
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#container svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* タッチスクロール防止 */
+    -webkit-tap-highlight-color: transparent; /* タップハイライト除去 */
+    transform: translateZ(0); /* GPUアクセラレーション有効化 */
+    will-change: transform; /* パフォーマンス最適化 */
+}
+
+/* SVGライン設定 */
+#container svg g path,
+#container svg g rect,
+#container svg g circle,
+#container svg g line {
+    vector-effect: non-scaling-stroke;
+    shape-rendering: geometricPrecision;
+}
+
+/* ===========================
+ * 4. コメント領域
+ * =========================== */
+#comment-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#comment-container textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+}
+
+/* ===========================
+ * 5. 凡例
+ * =========================== */
+#legend {
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* ===========================
+ * 6. 削除ゾーン関連
+ * =========================== */
+.delete-zone-overlay {
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.delete-zone-overlay.top {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+        rgba(239, 68, 68, 0.2) 0%,
+        rgba(239, 68, 68, 0) 100%);
+}
+
+.delete-zone-overlay.bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to top, 
+        rgba(239, 68, 68, 0.2) 0%,
+        rgba(239, 68, 68, 0) 100%);
+}
+
+.delete-zone-overlay.left {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, 
+        rgba(239, 68, 68, 0.2) 0%,
+        rgba(239, 68, 68, 0) 100%);
+}
+
+.delete-zone-overlay.right {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80px;
+    background: linear-gradient(to left, 
+        rgba(239, 68, 68, 0.2) 0%,
+        rgba(239, 68, 68, 0) 100%);
+}
+
+/* ===========================
+ * 7. フィールドオーバーレイ
+ * =========================== */
+.field-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 998;
+}
+
+.field-overlay.active {
+    opacity: 1;
+}
+
+/* ===========================
+ * 8. 削除インジケーター
+ * =========================== */
+.delete-zone-indicator {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.delete-zone-indicator.active {
+    transform: scale(1.1);
+}
+
+.delete-progress-container {
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.delete-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    width: 0%;
+}
+
+/* ===========================
+ * 9. モバイル対応設定
+ * =========================== */
+@media (max-width: 768px) {
+    /* アプリ全体 */
+    #app {
+        padding: 10px;
+    }
+
+    /* コントロールパネル */
+    #controls {
+        gap: 5px;
+    }
+
+    #controls button {
+        font-size: 14px;
+        padding: 14px 8px; /* タップ領域を広く */
+    }
+
+    /* フィールド */
+    #field-container {
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch; /* iOSのスムーススクロール */
+    }
+
+    /* 削除インジケーター */
+    .delete-zone-indicator {
+        width: 64px !important;
+        height: 64px !important;
+    }
+
+    /* 削除ゾーン */
+    .delete-zone-overlay.top,
+    .delete-zone-overlay.bottom {
+        height: 100px;
+    }
+
+    .delete-zone-overlay.left,
+    .delete-zone-overlay.right {
+        width: 100px;
+    }
+
+    /* プログレスバー */
+    .delete-progress-container {
+        height: 6px !important;
+        bottom: -6px !important;
+    }
+
+    /* フォントサイズ調整 */
+    #legend {
+        font-size: 12px;
+    }
+
+    /* コメント領域 */
+    #comment-container {
+        padding: 10px;
+    }
+    
+    #comment-container textarea {
+        font-size: 16px; /* iOSでの自動ズーム防止 */
+    }
+
+    /* 要素のタッチ操作最適化 */
+    .tactics-element {
+        cursor: grab;
+        touch-action: none;
+    }
+
+    .tactics-element:active {
+        cursor: grabbing;
+    }
+}
+
+/* ===========================
+ * 10. ハイDPIデバイス対応
+ * =========================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #field-container {
+        border-width: 0.5px;
+    }
+
+    #container svg g path,
+    #container svg g rect,
+    #container svg g circle,
+    #container svg g line {
+        shape-rendering: crispEdges;
+    }
+}

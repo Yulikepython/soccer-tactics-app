@@ -1,0 +1,91 @@
+/** Footer 固定用 */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* フッターのスタイル */
+.footer {
+    /* メインカラー#4CAF50の少し暗めの色を使用 */
+    background-color: #388E3C;
+    color: #fff;
+    padding: 2rem 0;
+    margin-top: auto;
+    width: 100%;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.footer-nav a:hover {
+    background-color: #4CAF50;  /* メインカラーをホバー時に使用 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer-copyright {
+    color: #C8E6C9;  /* メインカラーの明るいバリエーション */
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* 区切り線 */
+.footer-nav a:not(:last-child)::after {
+    content: '|';
+    margin-left: 2rem;
+    color: #81C784;  /* メインカラーの薄いバリエーション */
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .footer {
+        padding: 1.5rem 0;
+    }
+
+    .footer-nav {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-nav a {
+        padding: 0.75rem 1.5rem;
+        width: 200px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-nav a:hover {
+        background-color: #4CAF50;
+        transform: translateY(-1px);
+    }
+
+    /* モバイルでは区切り線を非表示 */
+    .footer-nav a:not(:last-child)::after {
+        display: none;
+    }
+}

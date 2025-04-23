@@ -4,7 +4,7 @@
   "description": "サッカー作戦盤アプリケーション - TypeScript版",
   "scripts": {
     "test": "jest",
-    "build": "tsc && cp -r docs/css docs/docs docs/*.html favicon.ico dist/",
+    "build": "rm -rf dist && tsc && mkdir -p dist && cp -r docs/* favicon.ico dist/",
     "dev": "tsc --watch",
     "lint": "eslint src/**/*.ts",
     "start": "npx http-server dist"
